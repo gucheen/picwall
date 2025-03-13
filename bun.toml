@@ -1,0 +1,2 @@
+[serve.static]
+env = "inline" # or "BUN_PUBLIC_*" for prefixed
