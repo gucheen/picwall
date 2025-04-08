@@ -3,10 +3,8 @@ import pug from 'pug'
 
 const formatExifEntries = (await Bun.file(path.join(import.meta.dirname, 'data.json')).json())
 
-const photosHtml = pug.renderFile(path.join(import.meta.dirname, '../web/photos.pug'), {
+const webHTML = pug.renderFile(path.join(import.meta.dirname, '../web/index.pug'), {
   photos: formatExifEntries,
 })
 
-const base = await Bun.file(path.join(import.meta.dirname, '../web/index.base.html')).text()
-const index = base.replace('<!-- PHOTOS -->', photosHtml)
-Bun.write(path.join(import.meta.dirname, '../web/index.html'), index)
+Bun.write(path.join(import.meta.dirname, '../web/index.html'), webHTML)
