@@ -1,34 +1,35 @@
 doctype html
-head
-  meta(charset='UTF-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  link(rel='stylesheet' href='./index.css')
-  title PicWall - Cheng&apos;s Gallery
-  meta(name='description' content='All photos by Cheng Gu')
-header.header
-  nav.nav
-    .logo
-      h1#title Cheng&apos;s Gallery
-    .nav-right
-      ul.links
-        li.link
-          a.link-a(href='https://guchengf.me') About
-#photos.photos
-  each photo in photos
-    a.photo(href=photo[1].src, data-pswp-width=photo[1].ImageWidth, data-pswp-height=photo[1].ImageHeight)
-      picture.photo-picture
-        source.photo-source(srcset=photo[1].thumbnailAvif, type="image/avif")
-        img.photo-image(src=photo[1].thumbnail, loading="lazy")
-        <span class="pswp-caption-content">
-          p 设备：#{photo[1].Model}
-          p 镜头：#{photo[1].Lens}
-          p 光圈：#{photo[1].Aperture}
-          p 快门：#{photo[1].ShutterSpeed}
-          p ISO：#{photo[1].ISO}
-          p 焦距：#{photo[1].FocalLength}
-          p 拍摄时间：#{photo[1].createDate}
-        </span>
-footer.footer
-  div
-    p Copyright &copy; 2025 Cheng Gu
-script(src='./index.js')
+html(lang='zh-cmn-Hans-CN')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet' href='./index.css')
+    title PicWall - Cheng&apos;s Gallery
+    meta(name='description' content='All photos by Cheng Gu')
+  header.header
+    nav.nav
+      .logo
+        h1#title Cheng&apos;s Gallery
+      .nav-right
+        ul.links
+          li.link
+            a.link-a(href='https://guchengf.me') About
+  #photos.photos
+    each photo in photos
+      a.photo(href=photo[1].src, data-pswp-width=photo[1].ImageWidth, data-pswp-height=photo[1].ImageHeight)
+        picture.photo-picture
+          source.photo-source(srcset=photo[1].thumbnailAvif, type="image/avif")
+          img.photo-image(src=photo[1].thumbnail, loading="lazy")
+          <span class="pswp-caption-content">
+            p 设备：#{photo[1].Model}
+            p 镜头：#{photo[1].Lens}
+            p 光圈：#{photo[1].Aperture}
+            p 快门：#{photo[1].ShutterSpeed}
+            p ISO：#{photo[1].ISO}
+            p 焦距：#{photo[1].FocalLength}
+            p 拍摄时间：#{photo[1].createDate}
+          </span>
+  footer.footer
+    div
+      p Copyright &copy; 2025 Cheng Gu
+  script(src='./index.js')
