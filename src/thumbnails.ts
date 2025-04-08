@@ -1,5 +1,4 @@
 import { readdir } from 'node:fs/promises'
-import path from 'node:path'
 import sharp from 'sharp'
 
 const photoFiles = await readdir('./photos')

@@ -5,16 +5,16 @@ import 'photoswipe/style.css'
 import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css'
 
 function debounce(func, wait, immediate) {
-  var timeout;
+  var timeout
   return function() {
-  	var context = this, args = arguments;
-  	clearTimeout(timeout);
-  	if (immediate && !timeout) func.apply(context, args);
+  	var context = this, args = arguments
+  	clearTimeout(timeout)
+  	if (immediate && !timeout) func.apply(context, args)
   	timeout = setTimeout(function() {
-  		timeout = null;
-  		if (!immediate) func.apply(context, args);
-  	}, wait);
-  };
+  		timeout = null
+  		if (!immediate) func.apply(context, args)
+  	}, wait)
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {

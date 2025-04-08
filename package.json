@@ -4,12 +4,14 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "bun src/index.ts",
+    "gen": "bun src/gen-data.ts",
+    "build": "bun src/build-web.ts",
     "thumbnail": "bun src/thumbnails.ts",
     "deploy": "rm -fr out && bun build ./src/index.html --outdir out --minify --external photos --external thumbnails"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/pug": "^2.0.10"
   },
   "peerDependencies": {
     "typescript": "^5"
