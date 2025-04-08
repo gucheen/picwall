@@ -90,6 +90,8 @@ const formatExifEntries = exifEntriesDecending.map(([fileName, tags]) => {
   ]
 })
 
+await Bun.write(path.join(import.meta.dirname, 'data.json'), JSON.stringify(formatExifEntries, null, 2))
+
 const photosHtml = pug.renderFile(path.join(import.meta.dirname, 'photos.pug'), {
   photos: formatExifEntries,
 })
