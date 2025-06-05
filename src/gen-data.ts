@@ -5,10 +5,10 @@ import path from 'path'
 
 type MyTags = Tags & { ExposureCompensation: string | number }
 
-const photoFiles = await readdir(path.join(import.meta.dirname, '../photos'))
+const photoFiles = await readdir(path.join(import.meta.dirname, '../raw'))
 
 const exifEntries: [string, MyTags][] = await Promise.all(photoFiles.map(async (fileName) => {
-  return exiftool.read(path.join(import.meta.dirname, '../photos', fileName)).then((tags) => [fileName, tags] as [string, MyTags])
+  return exiftool.read(path.join(import.meta.dirname, '../raw', fileName)).then((tags) => [fileName, tags] as [string, MyTags])
 }))
 
 exiftool.end()
