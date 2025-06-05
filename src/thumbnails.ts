@@ -13,8 +13,6 @@ await Promise.all(photoFiles.map((fileName) => {
   .rotate()
   return [
     image.clone()
-    .toFile(`./thumbnails/${fileName}`),
-    image.clone()
     .toFile(`./thumbnails/${fileName}.avif`),
   ]
 }).flat())

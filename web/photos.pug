@@ -1,7 +1,6 @@
 each photo in photos
   a.photo(href=photo[1].src, data-pswp-width=photo[1].ImageWidth, data-pswp-height=photo[1].ImageHeight)
     picture.photo-picture
-      source.photo-source(srcset=photo[1].thumbnailAvif, type="image/avif")
       img.photo-image(src=photo[1].thumbnail, loading="lazy")
       <span class="pswp-caption-content">
         p 设备：#{photo[1].Model}

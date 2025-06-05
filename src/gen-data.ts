@@ -83,8 +83,7 @@ const formatExifEntries = exifEntriesDecending.map(([fileName, tags]) => {
       WhiteBalance,
       createDate,
       src: new URL(path.join('photos', fileName), imageHost).toString(),
-      thumbnail: new URL(path.join('thumbnails', fileName), imageHost).toString(),
-      thumbnailAvif: new URL(path.join('thumbnails', fileName + '.avif'), imageHost).toString(),
+      thumbnail: new URL(path.join('thumbnails', fileName + '.avif'), imageHost).toString(),
     }
   ]
 })
