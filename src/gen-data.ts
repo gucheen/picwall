@@ -59,6 +59,7 @@ const formatExifEntries = exifEntriesDecending.map(([fileName, tags]) => {
     FNumber,
     Flash,
     WhiteBalance,
+    Orientation,
   } = tags
   const createDate = dayjs(getDatetimeObjectFromTag(tags) as unknown as Date).format('YYYY-MM-DD HH:mm:ss')
   return [
@@ -72,8 +73,8 @@ const formatExifEntries = exifEntriesDecending.map(([fileName, tags]) => {
       ExposureMode,
       Lens: Lens || LensModel || LensID,
       Format,
-      ImageWidth,
-      ImageHeight,
+      ImageWidth: Orientation === 8 ? ImageHeight : ImageWidth,
+      ImageHeight: Orientation === 8 ? ImageWidth : ImageHeight,
       Megapixels,
       ImageSize,
       ExposureCompensation,
@@ -84,6 +85,7 @@ const formatExifEntries = exifEntriesDecending.map(([fileName, tags]) => {
       createDate,
       src: new URL(path.join('photos', fileName), imageHost).toString(),
       thumbnail: new URL(path.join('thumbnails', fileName + '.avif'), imageHost).toString(),
+      Orientation,
     }
   ]
 })
