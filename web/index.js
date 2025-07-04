@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })
   const debouncedMasonryLayout = debounce(function() {
     masonry.layout()
-  }, 100)
+  }, 25)
 
   document.querySelectorAll('.photo-image').forEach((photo) => {
     photo.addEventListener('load', () => {
