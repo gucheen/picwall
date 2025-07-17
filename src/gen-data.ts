@@ -90,4 +90,14 @@ const formatExifEntries = exifEntriesDecending.map(([fileName, tags]) => {
   ]
 })
 
-await Bun.write(path.join(import.meta.dirname, 'data.json'), JSON.stringify(formatExifEntries, null, 2))
+const dataFile = Bun.file(path.join(import.meta.dirname, 'data.json'))
+
+const currentData: [string, any][] = await dataFile.json()
+
+const newData = formatExifEntries.filter(entry => currentData.findIndex(ent => ent[0] === entry[0]) === -1)
+
+if (newData.length > 0) {
+  await dataFile.write(JSON.stringify(newData.concat(currentData), null, 2))
+} else {
+  console.log('没有新照片')
+}
