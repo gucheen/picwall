@@ -1,30 +1,14 @@
-import { readdir } from 'node:fs/promises'
-import sharp from 'sharp'
+import path from 'node:path'
+import { getSignature } from './imgproxy'
 
-const photoFiles = await readdir('./raw')
+const dataFile = Bun.file(path.join(import.meta.dirname, 'data.json'))
 
-await Promise.all(photoFiles.map((fileName) => {
-  const image = sharp(`./raw/${fileName}`)
-    .rotate()
-  return [
-    image.clone()
-      .jpeg({
-        mozjpeg: true,
-      })
-      .toFile(`./photos/${fileName}`),
-  ]
-}).flat())
+const currentData: [string, any][] = await dataFile.json()
 
-await Promise.all(photoFiles.map((fileName) => {
-  const image = sharp(`./raw/${fileName}`)
-    .resize({
-      width: 1000,
-      height: 1000,
-      fit: 'inside',
-    })
-    .rotate()
-  return [
-    image.clone()
-      .toFile(`./thumbnails/${fileName}.avif`),
-  ]
-}).flat())
+for (const item of currentData) {
+  const url = `/w:1000/f:avif/plain/${item[1].src}`
+  const thumbnailUrl = `https://imgproxy.guchengf.me/${getSignature(url)}${url}`
+  item[1].thumbnail = thumbnailUrl.toString()
+}
+
+await dataFile.write(JSON.stringify(currentData, null, 2))
