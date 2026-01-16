@@ -19,6 +19,7 @@ function debounce(func, wait, immediate) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const masonry = new MiniMasonry({
+    baseWidth: 350,
     container: '#photos',
     gutter: 10,
   })
